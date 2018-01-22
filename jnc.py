@@ -268,7 +268,7 @@ class JNCPlugin(plugin.PyangPlugin):
             schema_nodes.append('</schema>')
 
             name = normalize(search_one(module, 'prefix').arg)
-            write_file(d, name + '.schema', '\n'.join(schema_nodes), self.ctx)
+            write_file(d, name + '.schema', str('\n'.join(schema_nodes)), self.ctx)
 
         if not self.ctx.opts.no_pkginfo:
             # Generate package-info.java for javadoc
@@ -1375,7 +1375,7 @@ class PackageInfoGenerator(object):
 
         """
         module = get_module(self.stmt).arg
-        return ''.join([package_info.format(' ' + module, ''), self.pkg, ';'])
+        return str(''.join([package_info.format(' ' + module, ''), self.pkg, ';']))
 
 
 class JavaClass(object):
